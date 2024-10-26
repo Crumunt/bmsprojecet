@@ -1,0 +1,797 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: #FFF;
+    border-right: 1px solid #e6e5e5;
+    transition: all 0.5s ease;
+}
+nav.close{
+    width: 73px;
+}
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+}
+nav .logo-image img{
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+nav .logo-name .logo_name{
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+    margin-left: 14px;
+    transition: all 0.5s ease;
+}
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+nav .menu-items{
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.menu-items li{
+    list-style: none;
+}
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-links li a:hover:before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-image: linear-gradient(to left, #1c7e24, #3d9926, #5fb425, #82d01f, #a8eb12);}
+body.dark li a:hover:before{
+    background-color: #CCC;
+}
+.menu-items li a i{
+    font-size: 24px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #707070;
+}
+.menu-items li a .link-name{
+    font-size: 18px;
+    font-weight: 400;
+    color: #707070;
+    transition: all 0.5s ease;
+}
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: #3b850a;
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: #CCC;
+}
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 1px solid #e6e5e5;
+}
+nav.close ~ .dashboard{
+  left: 73px;
+  width: calc(100% - 73px);
+}
+.dashboard .top{
+  position: fixed;
+  top: 0;
+  left: 250px;
+  display: flex;
+  width: calc(100% - 250px);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: #FFF;
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+nav.close ~ .dashboard .top{
+  left: 73px;
+  width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle{
+  font-size: 26px;
+  color: #000;
+  cursor: pointer;
+}
+.dashboard .top .search-box{
+  position:relative;
+  height: 45px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 30px;
+}
+.top .search-box input{
+  position: absolute;
+  border: 1px solid #e6e5e5;
+  background-color: #FFF;
+  padding: 0 25px 0 50px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  color: #000;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+}
+.top .search-box i{
+  position:absolute;
+  left: 15px;
+  font-size: 22px;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #707070;
+}
+.top img{
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+}
+.dashboard .dash-content{
+  padding-top: 50px;
+}
+.dashboard{
+  position: relative;
+  left: 250px;
+  background-color: #f5f6fa;
+  min-height: 100vh;
+  width: calc(100% - 250px);
+  padding: 40px 84px;
+  transition: all 0.5s ease;
+}
+.dashboard-title h1 {
+  /* margin-top: 20px; */
+  font-size: 40px;
+background: linear-gradient(to right, #6a82fb, #fc5c7d, #6a82fb);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: gradient-shift 3s infinite alternate;
+}
+
+@keyframes gradient-shift {
+0% { background-position: 0% 50%; }
+100% { background-position: 100% 50%; }
+}
+.content-wrapper {
+  display: flex;
+  gap: 20px; /* Space between the main content and right section */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Wraps content to avoid overflow */
+  align-items: flex-start; /* Aligns items at the top */
+}
+.main-content {
+  flex: 7; /* Occupies more space for the project cards and task list */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.projects-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Wraps project cards and add button */
+  align-items: stretch;
+  justify-content: flex-start; /* Keep cards aligned to the left */
+  margin-bottom: 20px;
+  transition: all 0.5s ease; /* Smooth transition for when sidebar expands */
+}
+
+.project-card {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+  padding: 20px;
+  width: 320px; /* Consistent width for all cards */
+  min-height: 280px; /* Fixed height for consistency across cards, including the Add button */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #e9e9e9;
+  position: relative;
+}
+
+  .project-card:hover {
+    color: white; /* Change text color to white on hover */
+    background-color: #24b047; /* Change background color on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  }
+
+  /* Pseudo-elements for the hover effect */
+  .project-card:before,
+  .project-card:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    filter: blur(30px);
+    opacity: 0.4; /* Initial opacity */
+    transition: 0.6s; /* Transition duration for the effect */
+  }
+
+  /* Define different widths and background colors for the pseudo-elements */
+  .project-card:before {
+    width: 60px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-130px) skewX(-45deg); /* Initial position */
+  }
+
+  .project-card:after {
+    width: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-130px) skewX(-45deg); /* Initial position */
+  }
+
+  /* Hover effect on pseudo-elements */
+  .project-card:hover:before,
+  .project-card:hover:after {
+    opacity: 0.6; /* Change opacity on hover */
+    transform: translateX(320px) skewX(-45deg); /* Move position on hover */
+  }
+
+  .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+  }
+
+  .icon {
+      width: 60px; /* Larger for emphasis */
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+  }
+
+  .pink-icon {
+      background-color: #80bf99; /* Same as your image */
+  }
+
+  .blue-icon {
+      background-color: #80bf99; /* Same as your image */
+  }
+
+  .avatars {
+      display: flex;
+      align-items: center;
+  }
+
+  .avatars img {
+      width: 40px; /* Larger avatars */
+      height: 40px;
+      border-radius: 50%;
+      margin-left: -15px;
+      border: 2px solid white;
+  }
+
+  /* Adjusting the dropdown dots */
+  .three-dots {
+      cursor: pointer;
+      font-size: 34px; /* Larger dots */
+  }
+
+.tasks-section {
+    margin-top: 20px; /* Add spacing between projects and tasks table */
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Adds space between rows */
+}
+
+.tasks-table th, .tasks-table td {
+    padding: 15px;
+    text-align: left;
+    height: 70px;
+}
+
+  /* sss bar container */
+  .progress-container {
+    background-color: #e0e0e0; /* Light gray background for the bar */
+    border-radius: 8px;
+    width: 100%;
+    height: 10px;
+    margin: 15px 0; /* Spacing between the bar and the text */
+    overflow: hidden;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add some depth */
+  }
+
+  /* Progress bar itself */
+  .progress-bar {
+    height: 100%;
+    background-color: #2dc432; /* Green color for progress */
+    border-radius: 8px; /* Round the corners */
+    transition: width 0.3s ease; /* Smooth animation when changing progress */
+  }
+
+  /* Progress percentage text */
+  .progress-text {
+    font-size: 14px;
+    color: #000000; /* Set text color to black */
+    font-weight: 500;
+  }
+  .project-card:hover .progress-text {
+    color: #ffffff; /* Set text color to white when hovered */
+}
+  .add-project {
+    background-color: rgb(255, 255, 255);
+    width: 110px;
+    height: 280px;
+    border-radius: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #e9e9e9; /* Add a 2px solid border */
+    position: relative; /* Position relative for pseudo-elements */
+    overflow: hidden; /* Ensure the hover effect doesn't overflow */
+  }
+
+  .add-project:hover {
+    background-color: #eeeeee; /* Change background color on hover */
+    box-shadow: 0 15px 40px rgba(117, 117, 117, 0.15); /* Add shadow for depth */
+  }
+
+  /* Pseudo-elements for the hover effect */
+  .add-project:before,
+  .add-project:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    filter: blur(30px);
+    opacity: 0.4; /* Initial opacity */
+    transition: 0.6s; /* Transition duration for the effect */
+  }
+
+  /* Define different widths and background colors for the pseudo-elements */
+  .add-project:before {
+    width: 60px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-130px) skewX(-45deg); /* Initial position */
+  }
+
+  .add-project:after {
+    width: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-130px) skewX(-45deg); /* Initial position */
+  }
+
+  /* Hover effect on pseudo-elements */
+  .add-project:hover:before,
+  .add-project:hover:after {
+    opacity: 0.6; /* Change opacity on hover */
+    transform: translateX(320px) skewX(-45deg); /* Move position on hover */
+  }
+
+  .add-icon {
+    font-size: 50px;
+    color: #a0a5ad;
+  }
+
+
+  /* Project Text */
+  h2 {
+      font-size: 20px; /* Slightly larger for the title */
+      font-weight: bold;
+  }
+
+  p {
+    color: #797878;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+.project-card:hover p,
+p:hover {
+    color: #cacaca; /* Set text color to white on hover */
+}
+/* task control or filtering */
+.task-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px; /* Align with the content */
+}
+
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#status-filter {
+  padding: 5px;
+  border: 1px solid #4d5463;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #eaf4ea; /* Light green */
+  color: #333;
+  appearance: none; /* Removes default styles in some browsers */
+  -webkit-appearance: none; /* For WebKit browsers */
+  -moz-appearance: none; /* For Mozilla browsers */
+}
+
+#status-filter option {
+  background-color: #eaf4ea; /* Light green for the dropdown options */
+  color: #333;
+}
+
+
+#status-filter:hover,
+#status-filter:focus {
+  background-color: #cfe5cf; /* Darker green background when hovering or focused */
+  border-color: #285423; /* Dark green border color */
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sort-buttons button {
+  padding: 5px 10px;
+  background-color: #24b047; /* Green background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect and scaling */
+}
+
+.sort-buttons button:hover {
+  background-color: forestgreen; /* Darker green when hovered */
+  transform: scale(1.05); /* Slightly increase button size when hovered */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: all 0.3s ease; /* Smooth transition for dropdown animation */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown-content a:first-child {
+    border-radius: 20px 20px 0 0;
+}
+
+.dropdown-content a:last-child {
+    border-radius: 0 0 20px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px); /* Dropdown slightly moves down when appearing */
+}
+
+.dropdown-content a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  color: #2c2c2c; /* Green color for dropdown links */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-content a:nth-child(2):hover {
+  background-color: #cfe5cf; /* Light green when hovered */
+  /* border-radius: 20px; */
+  color: forestgreen; /* Darker green text color when hovered */
+}
+
+.dropdown-content a:first-child:hover {
+    background-color: #cfe5cf; /* Light green when hovered */
+    border-radius: 20px 20px 0 0;
+  color: forestgreen; /* Darker green text color when hovered */
+}
+
+.dropdown-content a:last-child:hover {
+    background-color: #cfe5cf; /* Light green when hovered */
+  border-radius: 0 0 20px 20px;
+  color: forestgreen; /* Darker green text color when hovered */
+}
+
+
+
+/* Task table */
+.tasks-table {
+    width: 100%;
+    border-collapse: separate; /* Allows for border-radius */
+    border-spacing: 0 10px; /* Adds space between rows */
+  }
+
+  .tasks-table th, .tasks-table td {
+    padding: 15px;
+    text-align: left;
+    height: 70px;
+  }
+
+  /* Style for the table headers */
+  .tasks-table thead th {
+    color: #7a7a7a; /* Light gray for headers */
+    padding: 10px;
+    text-align: left;
+    font-size: 15px;
+  }
+
+  /* Task rows styling */
+  .tasks-table tbody tr {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Adds shadow for elevation */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+/* Hover effects with higher specificity */
+.tasks-table tbody tr:hover,
+.tasks-table tbody tr:nth-child(odd):hover,
+.tasks-table tbody tr:nth-child(even):hover {
+    transform: scale(1.02); /* Slight scale-up effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    background-color: #24b047; /* Changes background color on hover */
+    color: white; /* Changes text color on hover */
+}
+
+/* Ensure border radius applies to entire row */
+.tasks-table tbody tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.tasks-table tbody tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+  /* Ensure border radius applies to entire row */
+  .tasks-table tbody tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  .tasks-table tbody tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .tasks-table td img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  /* Status indicators */
+  .task-status {
+    padding: 5px 10px; /* Adjusted padding */
+    border-radius: 15px; /* Rounded corners */
+    font-size: 15px; /* Corrected from '2px' which seems like a typo */
+  }
+
+  .in-progress {
+    color: #4a90e2;
+  }
+
+  .done {
+    color: #27ae60;
+  }
+
+  .view-all-projects, .view-all-tasks {
+    text-align: right; /* Aligns content to the right */
+    padding-right: 20px; /* Adds padding on the right for alignment */
+}
+
+.view-all-link {
+    display: inline-block; /* Allows for padding and margin to be applied */
+    padding: 8px 15px; /* Adds padding around the text */
+    color: rgb(134, 134, 134); /* Sets the text color to white */
+    border-radius: 5px; /* Rounds the corners of the background */
+    text-decoration: none; /* Removes underline from the link */
+    transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+    color: #2dc432;
+    transform: scale(1.02);
+}
+.right-section {
+  flex: 2; /* Increase width to better balance with the main content */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-self: flex-start;
+  width: 100%; /* Ensures full use of available space */
+  max-width: 500px; /* Set a maximum width to avoid excessive stretching */
+  transition: all 0.5s ease; /* Smooth transition when resizing */
+}
+ .progress-box, .schedule-box {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+
+h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Circular Progress Styles */
+.circular-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(#2dc432 calc(var(--percent) * 1%), #d1d5db calc(var(--percent) * 1%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.inner-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.circular-progress p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Schedule Styles */
+.schedule-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Utilize full width within the right section */
+  border: 1px solid #ddd;
+  margin-bottom: 20px; /* Add spacing below for better layout */
+}
+
+
+#schedule-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+#schedule-list li {
+  background-color: #f7f7f7;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+#schedule-list li button {
+  background-color: transparent;
+  border: none;
+  color: #f50057;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center; /* Ensure all elements are centered vertically */
+  gap: 5px; /* Reduce the gap between input and button for better alignment */
+  margin-top: 10px;
+  width: 100%; /* Ensure the container takes the full width of the parent */
+}
+
+#schedule-input {
+  flex: 3; /* Allow the input to take a larger proportion of the available space */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+button#add-schedule {
+  flex: 1; /* Button takes smaller space compared to the input */
+  padding: 10px 15px;
+  background-color: #24b047;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button#add-schedule:hover {
+  background-color: forestgreen;
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Adds space between rows */
+}
+
+.tasks-table th, .tasks-table td {
+    padding: 15px;
+    text-align: left;
+    height: 70px;
+}

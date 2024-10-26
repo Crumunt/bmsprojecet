@@ -29,13 +29,9 @@
                 <th>Actions</th>
             </x-slot:tableHeaders>
 
-            @php
-                $dates = [14, 15, 16,17];
-            @endphp
-
-            @foreach ($dates as $date)
+            @for ($i = 0; $i < 5; $i++)
                 <x-dashboard.table-content>
-                    <td>{{$date}} Dec 2020</td>
+                    <td>{{rand(1,31)}} Dec 2020</td>
                     <td>Implement new UX</td>
                     <td class="done">DONE</td>
                     <td>
@@ -46,7 +42,7 @@
                         <x-dropdown :dropdownMenu="['View', 'Edit', 'Delete']" />
                     </td>
                 </x-dashboard.table-content>
-            @endforeach
+            @endfor
         </x-dashboard.table>
 
     </div>

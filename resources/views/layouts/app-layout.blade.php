@@ -25,10 +25,10 @@
 </head>
 
 <body>
-    <x-dashboard.nav />
+    <x-nav />
 
     <section class="dashboard mt-5 {{ merge_classes('', $sectionClass) }}">
-        <x-dashboard.top-nav />
+        <x-top-nav />
 
         <div class="dashboard-title">
             @yield('page_header')

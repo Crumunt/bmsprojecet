@@ -15,11 +15,11 @@
         <div class="folders">
             <h4>Folders</h4>
             <ul>
-                <li><i class="fa fa-inbox"></i> Inbox <span class="count">16</span></li>
-                <li><i class="fa fa-paper-plane"></i> Send Mail</li>
-                <li><i class="fa fa-star"></i> Important</li>
-                <li><i class="fa fa-file"></i> Drafts <span class="count">2</span></li>
-                <li><i class="fa fa-trash"></i> Trash</li>
+                <li><i class="uik uil-inbox"></i> Inbox <span class="count">16</span></li>
+                <li><i class="uil uil-telegram-alt"></i> Send Mail</li>
+                <li><i class="uil uil-star"></i> Important</li>
+                <li><i class="uil uil-file"></i> Drafts <span class="count">2</span></li>
+                <li><i class="uil uil-trash"></i> Trash</li>
             </ul>
         </div>
         <div class="categories">
@@ -27,7 +27,7 @@
             <ul>
                 <li><span class="dot work"></span> Work</li>
                 <li><span class="dot documents"></span> Documents</li>
-                <li><span the dot social"></span> Social</li>
+                <li><span class="dot social"></span> Social</li>
                 <li><span class="dot advertising"></span> Advertising</li>
                 <li><span class="dot clients"></span> Clients</li>
             </ul>
@@ -54,10 +54,10 @@
                 </div>
                 <div class="header-controls">
                     <div class="inbox-controls">
-                        <button class="btn-refresh"><i class="fas fa-sync-alt"></i></button>
-                        <button class="btn-view"><i class="fas fa-eye"></i></button>
-                        <button class="btn-flag"><i class="fas fa-flag"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                        <button class="btn-refresh"><i class="uil uil-sync"></i></button>
+                        <button class="btn-view"><i class="uil uil-eye"></i></button>
+                        <button class="btn-flag"><i class="uil uil-exclamation-octagon"></i></button>
+                        <button class="btn-delete"><i class="uil uil-trash"></i></button>
                     </div>
                     <div class="input-box">
                         <i class="uil uil-search"></i>
@@ -66,46 +66,33 @@
                     </div>
 
                 </div>
-                <table class="product-table">
+                <table class="product-table table table-hover">
                     <thead>
-                        <tr>
-                            <th>select</th>
-                            <th>Product Name</th>
-                            <th>Product ID</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Type</th>
-                            <th>Status</th>
+                        <tr class="text-center">
+                            <th class="col-1">Select</th>
+                            <th class="col-3">User</th>
+                            <th class="col-3">Subject</th>
+                            <th class="col-2">Type</th>
+                            <th class="col-2">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td><img src="cherry-icon.png" class="product-icon"> Kim domingo</td>
-                            <td>2323</td>
-                            <td>$2312</td>
-                            <td>32</td>
-                            <td>uwut</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td><img src="kiwi-icon.png" class="product-icon"> Kiwi</td>
-                            <td>2323</td>
-                            <td>$2312</td>
-                            <td>32</td>
-                            <td>uwut</td>
-                            <td><span class="status active">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td><img src="mango-icon.png" class="product-icon"> Mango Magic</td>
-                            <td>2323</td>
-                            <td>$2312</td>
-                            <td>32</td>
-                            <td>uwut</td>
-                            <td><span class="status inactive">Inactive</span></td>
-                        </tr>
+                        @php
+                            $collection = ['pending' => 'Unread', 'active' => 'Read', 'inactive' => 'Report'];
+                        @endphp
+                        @for ($i = 0; $i < 10; $i++)
+                        @php
+                            $key = array_rand($collection);
+                        @endphp
+                            <tr>
+                                <td class="col-1"><input type="checkbox"></td>
+                                <td class="col-3"><img src="{{ asset('assets/images/avatar1.jpg') }}" class="product-icon">
+                                    Kim domingo</td>
+                                <td class="text-truncate" style="max-width: 100px">{{strip_tags(file_get_contents('http://loripsum.net/api/10/short/headers'))}}</td>
+                                <td class="col-2">Sub-Admin</td>
+                                <td class="col-2"><span class="status {{$key}}">{{$collection[$key]}}</span></td>
+                            </tr>
+                        @endfor
                     </tbody>
                 </table>
                 <div class="pagination-container">

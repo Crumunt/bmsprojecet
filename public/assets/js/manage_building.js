@@ -23,6 +23,8 @@ $(document).ready(function () {
         // get tbody with associated id using data-target attribute of button
         $(`tbody#${task_id}_tasks`).append(task_body)
 
+        console.log(task_id)
+
         // resets add form upon clicking add
         $(`#${task_id}_input`).val('')
         $(`#${task_id}_target`).val('')

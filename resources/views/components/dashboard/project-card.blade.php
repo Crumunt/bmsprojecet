@@ -22,6 +22,6 @@
     <p class="progress-text">{{$completionRate}}% Completed</p>
 
     <div class="progress-container">
-        <div class="progress-bar" style="width: {{$completionRate}}%;"></div>
+        <div class="progress-bar bg-success" style="width: {{$completionRate}}%;"></div>
     </div>
 </div>

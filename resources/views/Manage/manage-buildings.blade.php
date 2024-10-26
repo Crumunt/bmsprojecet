@@ -54,20 +54,9 @@
 
     @section('main-content')
         <div class="projects-section mt-5" id="project_row">
-            {{-- @for ($i = 0; $i < 20; $i++)
-            <div class="card" style="width: 18rem;">
-                <img src="{{ asset('assets/images/image.jpg') }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <div class="btn-group d-flex justify-content-evenly gap-2">
-                        <button class="btn btn-primary">View</button>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        @endfor --}}
+            @for ($i = 0; $i < 5; $i++)
+                <x-dashboard.project-card title="Project Number#{{$i+1}}" tasks="{{rand(1,10)}}" dropdownID="{{$i}}" completionRate="{{rand(1,100)}}"/>
+            @endfor
         </div>
         <div class="modalGroup">
             {{-- Basic Info Modal --}}
@@ -147,5 +136,4 @@
             </x-manage-projects.modal>
 
         </div>
-
     @endsection

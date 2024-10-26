@@ -9,29 +9,29 @@
 
     <div class="menu-items">
         <ul class="nav-links p-0">
-            <li><a href="#">
+            <li><a href="{{route('index')}}">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-            <li><a href="#">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Content</span>
+            <li><a href="{{route('manage_projects')}}">
+                    <i class="uil uil-building"></i>
+                    <span class="link-name">Projects</span>
+                </a></li>
+            <li><a href="{{route('mail')}}">
+                    <i class="uil uil-envelope"></i>
+                    <span class="link-name">Mail</span>
                 </a></li>
             <li><a href="#">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Analytics</span>
+                    <i class="uil uil-bell"></i>
+                    <span class="link-name">Notifications</span>
                 </a></li>
             <li><a href="#">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">Like</span>
+                    <i class="uil uil-calender"></i>
+                    <span class="link-name">Plans</span>
                 </a></li>
             <li><a href="#">
-                    <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
-                </a></li>
-            <li><a href="#">
-                    <i class="uil uil-share"></i>
-                    <span class="link-name">Share</span>
+                    <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Users</span>
                 </a></li>
         </ul>
 

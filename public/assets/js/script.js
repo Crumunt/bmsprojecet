@@ -1,5 +1,5 @@
- // Function to toggle dropdown
- function toggleDropdown(dropdownId) {
+// Function to toggle dropdown
+function toggleDropdown(dropdownId) {
     var dropdown = document.getElementById(dropdownId);
     console.log(dropdown)
     if (dropdown.style.display === "block") {
@@ -30,20 +30,20 @@ function searchTasks() {
 }
 
 const body = document.querySelector("body"),
-      modeToggle = body.querySelector(".mode-toggle");
-      sidebar = body.querySelector("nav");
-      sidebarToggle = body.querySelector(".sidebar-toggle");
+    modeToggle = body.querySelector(".mode-toggle");
+sidebar = body.querySelector("nav");
+sidebarToggle = body.querySelector(".sidebar-toggle");
 
 let getStatus = localStorage.getItem("status");
-if(getStatus && getStatus ==="close"){
+if (getStatus && getStatus === "close") {
     sidebar.classList.toggle("close");
 }
 
 sidebarToggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")){
+    if (sidebar.classList.contains("close")) {
         localStorage.setItem("status", "close");
-    }else{
+    } else {
         localStorage.setItem("status", "open");
     }
 })
@@ -130,3 +130,21 @@ function sortTasks(order) {
     // Append sorted rows back to the tbody
     rows.forEach(row => tbody.appendChild(row));
 }
+
+// Toggle Notifications
+function toggleNotifications() {
+    const dropdown = document.getElementById('notificationDropdown');
+    const badge = document.querySelector('.notification .badge');
+    dropdown.classList.toggle('show-notifications');
+    if (badge) {
+        badge.style.display = dropdown.classList.contains('show-notifications') ? 'none' : 'block';
+    }
+}
+
+// Close Notification Dropdown if clicked outside
+window.onclick = function (event) {
+    const dropdown = document.getElementById('notificationDropdown');
+    if (!event.target.closest('.notification') && dropdown.classList.contains('show-notifications')) {
+        dropdown.classList.remove('show-notifications');
+    }
+};

@@ -50,12 +50,13 @@
                 </div>
             </button>
         </div>
-    @endsection
+@endsection
 
     @section('main-content')
         <div class="projects-section mt-5" id="project_row">
             @for ($i = 0; $i < 5; $i++)
-                <x-dashboard.project-card title="Project Number#{{$i+1}}" tasks="{{rand(1,10)}}" dropdownID="{{$i}}" completionRate="{{rand(1,100)}}"/>
+                <x-dashboard.project-card title="Project Number#{{ $i + 1 }}" tasks="{{ rand(1, 10) }}"
+                    dropdownID="{{ $i }}" completionRate="{{ rand(1, 100) }}" />
             @endfor
         </div>
         <div class="modalGroup">

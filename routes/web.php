@@ -16,3 +16,11 @@ Route::get('/manage_projects', function() {
 Route::get('/mail', function() {
     return view('mail');
 })->name('mail');
+
+Route::get('/tasks', function() {
+    return view('Manage.manage-tasks');
+})->name('manage_tasks');
+
+Route::get('/view_building', function() {
+    return view('view-building');
+})->name('view_building');

@@ -27,12 +27,12 @@
             <ul>
                 <li><span class="dot work"></span> Work</li>
                 <li><span class="dot documents"></span> Documents</li>
-                <li><span class="dot social"></span> Social</li>
-                <li><span class="dot advertising"></span> Advertising</li>
+                {{-- <li><span class="dot social"></span> Social</li> --}}
+                <li><span class="dot advertising"></span> Contractors</li>
                 <li><span class="dot clients"></span> Clients</li>
             </ul>
         </div>
-        <div class="labels">
+        {{-- <div class="labels">
             <h4>Labels</h4>
             <div class="label-tags">
                 <span class="label">Family</span>
@@ -44,7 +44,7 @@
                 <span class="label">Photography</span>
                 <span class="label">Film</span>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="main-content">
         <div class="inbox">
@@ -81,16 +81,18 @@
                             $collection = ['pending' => 'Unread', 'active' => 'Read', 'inactive' => 'Report'];
                         @endphp
                         @for ($i = 0; $i < 10; $i++)
-                        @php
-                            $key = array_rand($collection);
-                        @endphp
+                            @php
+                                $key = array_rand($collection);
+                            @endphp
                             <tr>
                                 <td class="col-1"><input type="checkbox"></td>
                                 <td class="col-3"><img src="{{ asset('assets/images/avatar1.jpg') }}" class="product-icon">
                                     Kim domingo</td>
-                                <td class="text-truncate" style="max-width: 100px">{{strip_tags(file_get_contents('http://loripsum.net/api/10/short/headers'))}}</td>
+                                <td class="text-truncate" style="max-width: 100px">
+                                    {{ strip_tags(file_get_contents('http://loripsum.net/api/10/short/headers')) }}</td>
                                 <td class="col-2">Sub-Admin</td>
-                                <td class="col-2"><span class="status {{$key}}">{{$collection[$key]}}</span></td>
+                                <td class="col-2"><span class="status {{ $key }}">{{ $collection[$key] }}</span>
+                                </td>
                             </tr>
                         @endfor
                     </tbody>

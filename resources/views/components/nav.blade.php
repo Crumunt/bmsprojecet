@@ -25,7 +25,7 @@
                     <i class="uil uil-bell"></i>
                     <span class="link-name">Notifications</span>
                 </a></li>
-            <li><a href="#">
+            <li><a href="{{route('manage_tasks')}}">
                     <i class="uil uil-calender"></i>
                     <span class="link-name">Plans</span>
                 </a></li>

@@ -17,7 +17,7 @@
 
     <div class="tasks-section">
         <div class="view-all-projects">
-            <a href="#" class="view-all-link">View All Projects</a>
+            <a href="{{route('manage_projects')}}" class="view-all-link">View All Projects</a>
         </div>
 
         <x-dashboard.table class="tasks-table">

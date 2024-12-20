@@ -179,6 +179,13 @@ text-underline-offset:var(--underline-offset)
 color:var(--color-green-dark)
 }
 
+.nav-links .active-page .link-name{
+    color: var(--color-green-dark) !important;
+    text-decoration: var(--link-hover-decoration);
+    text-decoration-color: var(--color-hover-yellow);
+    text-underline-offset: var(--underline-offset);
+}
+
 body.dark .nav-links li a:hover i,body.dark .nav-links li a:hover .link-name {
 color:#CCC
 }
@@ -215,7 +222,7 @@ position:fixed;
 top:0;
 transition:var(--transition-speed);
 width:calc(100% - var(--nav-width));
-z-index:10
+z-index: 1000;
 }
 
 nav.close ~ .dashboard .top {
@@ -280,14 +287,14 @@ display:flex;
 gap:var(--gap-large)
 }
 
-.notification i {
+/* .notification i {
 color:var(--color-gray-border);
 cursor:pointer;
 font-size:var(--icon-size-large);
 position:relative
-}
+} */
 
-.notification .badge {
+/* .notification .badge {
 background:var(--color-notif-badge);
 border-radius:50%;
 color:var(--color-white);
@@ -297,7 +304,7 @@ padding:2px 6px;
 position:absolute;
 right:-8px;
 top:-8px
-}
+} */
 
 .profile-image {
 border-radius:50%;

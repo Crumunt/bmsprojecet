@@ -1,26 +1,39 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\GeneratePdfController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ViewBuilding;
+use App\Http\Middleware\CheckUserSession;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function() {
+Route::get('/', function () {
+    if(session('user_id')) {
+        return view('dashboard');
+    }
+
     return view('index');
 })->name('index');
 
-Route::get('/manage_projects', function() {
-    return view('Manage.manage-buildings');
-})->name('manage_projects');
+Route::middleware(CheckUserSession::class)->group(function () {
 
-Route::get('/mail', function() {
-    return view('mail');
-})->name('mail');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/tasks', function() {
-    return view('Manage.manage-tasks');
-})->name('manage_tasks');
+    Route::get('/manage_projects', [BuildingController::class, 'index'])->name('manage_projects');
 
-Route::get('/view_building', function() {
-    return view('view-building');
-})->name('view_building');
+    Route::get('/users', function () {
+        return view('user');
+    })->name('users');
+
+    Route::get('/tasks', function () {
+        return view('Manage.manage-tasks');
+    })->name('manage_tasks');
+
+    Route::get('/view_building/{id}', [ViewBuilding::class, 'loadBuilding'])->name('view_building');
+
+    Route::get('/generate-report/{id}', [GeneratePdfController::class, 'generatePdf'])->name('generate_report');
+
+    Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+});

@@ -15,65 +15,12 @@
     <!-- Main Content with Projects and Task List -->
     <div class="kanban-container">
 
-        <div class="kanban-board">
-            <!-- To Do Column -->
-            <div class="kanban-column" id="todo-column">
-                <h2>To Do</h2>
-                <div class="add-card-btn" data-bs-target="#addTaskModal" data-bs-toggle="modal"
-                    onclick="openModal('todo-column')">+ Add another card</div>
-            </div>
-
-            <!-- In Progress Column -->
-            <div class="kanban-column" id="inprogress-column">
-                <h2>In Progress</h2>
-                <div class="add-card-btn" data-bs-target="#addTaskModal" data-bs-toggle="modal"
-                    onclick="openModal('inprogress-column')">+ Add another card</div>
-            </div>
-
-            <!-- Done Column -->
-            <div class="kanban-column" id="done-column">
-                <h2>Done</h2>
-                <div class="add-card-btn" data-bs-target="#addTaskModal" data-bs-toggle="modal"
-                    onclick="openModal('done-column')">+ Add another card</div>
-            </div>
-
-            <!-- Deployed Column -->
-            <div class="kanban-column" id="deployed-column">
-                <h2>Deployed</h2>
-                <div class="add-card-btn" data-bs-target="#addTaskModal" data-bs-toggle="modal"
-                    onclick="openModal('deployed-column')">+ Add another card</div>
-            </div>
-        </div>
+        <livewire:manage-tasks.manage-tasks />
 
         <!-- Add Task Modal -->
-        <x-manage-projects.modal modalID="addTaskModal" modalSize="lg">
-            <x-slot:pageTitle>Add New Task</x-slot:pageTitle>
-            <x-forms.form formID="addTaskForm">
-                <x-forms.input id="taskName" name="taskName" placeholder="Task Name" required />
-                <!-- Changed input to textarea -->
-                <textarea id="description" name="description" placeholder="Task Description" rows="3" style="resize:vertical;"></textarea>
+        <livewire:manage-tasks.task-modal />
 
-                <div class="date-row">
-                    <div class="date-field">
-                        <label for="startDate">Start Date</label>
-                        <input type="date" id="startDate" name="startDate">
-                    </div>
-
-                    <div class="date-field">
-                        <label for="dueDate">Due Date</label>
-                        <input type="date" id="dueDate" name="dueDate">
-                    </div>
-                </div>
-            </x-forms.form>
-            <x-slot:modalControls>
-                <!-- Hidden input to store column ID -->
-                <input type="hidden" id="columnId" name="columnId">
-
-                <button id="addTaskBtn" class="btn-primary" type="submit" onclick="addTaskCard(event);">Add Task</button>
-            </x-slot:modalControls>
-        </x-manage-projects.modal>
-
-        <div id="editTaskModal" class="modal modal-dialog-sm">
+        {{-- <div id="editTaskModal" class="modal modal-dialog-sm">
             <div class="modal-content">
                 <span class="close" onclick="closeEditModal()">&times;</span>
                 <h2>Edit Task</h2>
@@ -102,13 +49,17 @@
                     <button id="saveChangesBtn" class="btn-primary" type="submit">Save Changes</button>
                 </form>
             </div>
-        </div>
+        </div> --}}
     </div>
 
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v1.x.x/dist/livewire-sortable.js"></script>
     <script>
         // Open Modal for Adding Cards
         function openModal(columnId) {
-            document.getElementById('columnId').value = columnId;
+            // document.getElementById('columnId').value = columnId;
+            setTimeout(() => {
+                $('#addTaskBtn').attr('wire:click', `addTask('${columnId}')`)
+            }, 500);
             // document.getElementById('addTaskModal').style.display = 'flex';
         }
 
@@ -123,8 +74,8 @@
             const dueDay = new Date(dueDate);
 
             // reset hours to midnight
-            const startingMidnight = new Date(startingDay.setHours(0,0,0,0));
-            const dueMidnight = new Date(dueDay.setHours(0,0,0,0));
+            const startingMidnight = new Date(startingDay.setHours(0, 0, 0, 0));
+            const dueMidnight = new Date(dueDay.setHours(0, 0, 0, 0));
             const timeDiff = dueMidnight - startingMidnight;
             const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             console.log(daysLeft)
@@ -160,21 +111,21 @@
             const formattedDescription = taskDescription.replace(/\n/g, '<br>');
 
             newCard.innerHTML = `
-        <div class="kanban-card-header">
-            <h3>${taskName}</h3>
-            <div class="edit-dropdown">
-                <i class="uil uil-edit" onclick="toggleDropdown('${uniqueId}')"></i>
-                <div id="${uniqueId}" class="dropdown-content">
-                    <a href="#" onclick="editTask('${taskName}')">Edit</a>
-                    <a href="#" onclick="deleteTask('${taskName}')">Delete</a>
-                </div>
+    <div class="kanban-card-header">
+        <h3>${taskName}</h3>
+        <div class="edit-dropdown">
+            <i class="uil uil-edit" onclick="toggleDropdown('${uniqueId}')"></i>
+            <div id="${uniqueId}" class="dropdown-content">
+                <a href="#" onclick="editTask('${taskName}')">Edit</a>
+                <a href="#" onclick="deleteTask('${taskName}')">Delete</a>
             </div>
         </div>
-        <p>${formattedDescription}</p>
-        <div class="due-date">
-            <i class="uil uil-calendar-alt"></i>
-            <span class="remaining-days">${remainingDays}</span>
-        </div>
+    </div>
+    <p>${formattedDescription}</p>
+    <div class="due-date">
+        <i class="uil uil-calendar-alt"></i>
+        <span class="remaining-days">${remainingDays}</span>
+    </div>
     `;
 
             const column = document.getElementById(columnId);

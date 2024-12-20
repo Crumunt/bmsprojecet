@@ -1,0 +1,243 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(100deg, #006400, #7DB932, #228B22, #9DCA42);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    padding: 20px;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.login-container {
+    display: flex;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 1000px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo Section */
+.logo-section {
+    background: #006400;
+    padding: 50px;
+    color: #fff;
+    width: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo-section img {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+.logo-section img:hover {
+    transform: scale(1.1);
+}
+
+.logo-section h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.logo-section .sub-text {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.form-section {
+    padding: 50px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.form-section h2 {
+    font-size: 28px;
+    color: #006400;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #333;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #006400;
+    transform: scale(1.02);
+}
+
+/* Forgot Password */
+.forgot-password {
+    display: block;
+    font-size: 16px;
+    color: #006400;
+    text-decoration: none;
+    text-align: right;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #228B22;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: #006400;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background: #228B22;
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .logo-section {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .form-section {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .logo-section img {
+        width: 100px;
+    }
+
+    .form-section h2 {
+        font-size: 24px;
+    }
+
+    .input-group input {
+        font-size: 16px;
+    }
+
+    .login-btn {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-section h1 {
+        font-size: 20px;
+    }
+
+    .logo-section .sub-text {
+        font-size: 14px;
+    }
+
+    .form-section h2 {
+        font-size: 22px;
+    }
+
+    .input-group input {
+        font-size: 14px;
+    }
+
+    .forgot-password {
+        font-size: 14px;
+    }
+
+    .login-btn {
+        font-size: 16px;
+    }
+}

@@ -16,133 +16,135 @@
 
 <style>
     #map {
-        height: 500px;
+        height: 450px;
+        width: 100%;
     }
 </style>
 
 @section('main-content')
-    <div class="top-content d-flex gap-5">
-        <div class="building-wrapper border rounded-5 overflow-hidden shadow col-3"
-            style="max-width: 400px; max-height: 400px;">
-            <img src="{{ asset('assets/images/image.jpg') }}" alt="" class="d-block object-fit-cover w-100 h-100">
-        </div>
+    <div class="top-content mt-5">
 
-        <div class="col-8 building-info-wrapper row justify-content-evenly align-items-center">
-            <div class="d-flex flex-column w-50">
-                <x-forms.input class="form-floating w-100" value="Oakwood Plaza" state="disabled"
-                    label="Building Name"></x-forms.input>
-                <x-forms.input class="form-floating w-100" value="James Hargrove" state="disabled"
-                    label="Contractor"></x-forms.input>
-                <x-forms.input class="form-floating w-100" value="Hargrove Construction Inc." state="disabled"
-                    label="Company"></x-forms.input>
+        <div class="col building-info-wrapper row justify-content-evenly align-items-center">
+            <div class="d-flex flex-column w-100">
+                <div class="card bg-secondary">
+                    <div class="card-header">
+                        <h1>Building Info</h1>
+                    </div>
+                    <div class="card-body d-flex row">
+                        <div class="info-wrapper col-6">
+                            <div class="card-title">
+                                <p class="h4">Building Name</p>
+
+                                <span class="d-block ps-4">{{ $building_data->building_name }}</span>
+                            </div>
+                            <div class="card-title">
+                                <p class="h4">Contractor Name</p>
+
+                                <span class="d-block ps-4">{{ $building_data->contractor_name }}</span>
+                            </div>
+                            <div class="card-title">
+                                <p class="h4">Allocated Budget</p>
+
+                                <span class="d-block ps-4">{{ $building_data->budget }}</span>
+                            </div>
+                            <div class="card-title">
+                                <p class="h4">Starting Date</p>
+
+                                <span class="d-block ps-4">{{ $building_data->starting_date }}</span>
+                            </div>
+                            <div class="card-title">
+                                <p class="h4">Due Date</p>
+
+                                <span class="d-block ps-4">{{ $building_data->end_date }}</span>
+                            </div>
+                        </div>
+
+                        <div class="map-container col-6">
+                            <div class="map-container border shadow rounded-3 overflow-hidden">
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex flex-column w-50">
-                <x-forms.input class="form-floating" value="$2,500,000" state="disabled" label="Budget"></x-forms.input>
-                <x-forms.input class="form-floating" value="March 15, 2024" state="disabled"
-                    label="Starting Date"></x-forms.input>
-                <x-forms.input class="form-floating" value="September 30, 2025" state="disabled"
-                    label="Due Date"></x-forms.input>
-            </div>
+            {{-- <div class="d-flex flex-column w-50">
+                <div class="map-container">
+                    <div class="map-container border shadow rounded-3 overflow-hidden">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
     </div>
-    <div class="map-container mt-5">
+    {{-- <div class="map-container mt-5">
         <div class="header">
             <h1>Map</h1>
         </div>
         <div class="map-container border shadow rounded-3 overflow-hidden">
             <div id="map"></div>
         </div>
-    </div>
+    </div> --}}
     <div class="tasks-container mt-5">
-        <div class="header">
-            <h1>Tasks</h1>
+        <div class="header row mb-2">
+            <h1 class="col-10">Tasks</h1>
+            <div class="col-2 d-flex align-items-center">
+                <a href="{{ route('generate_report', ['id' => $building_data->id]) }}"
+                    class=" btn btn-md btn-success">Generate Report</a>
+            </div>
         </div>
         <div class="tasks-wrapper">
             @php
                 $stages = ['Planning', 'Construction', 'Inspection', 'Maintenance'];
-                $tasks = [
-                    'Planning' => [
-                        'Conduct site analysis and feasibility study.' =>
-                            'Complete within 4 weeks; identify potential issues.',
-                        'Develop architectural and engineering designs.' => 'Finalize designs by the end of week 8.',
-                        'Create a detailed project timeline and milestones.' =>
-                            'Develop and approve the timeline by week 10.',
-                        'Prepare and submit necessary permits and approvals.' =>
-                            'Submit all permits within 2 weeks after finalizing designs.',
-                        'Establish a project budget and funding sources.' =>
-                            'Finalize the budget by week 12, securing 100% of funding.',
-                    ],
-                    'Construction' => [
-                        'Mobilize construction equipment and materials to the site.' =>
-                            'Complete mobilization within 1 week after permit approval.',
-                        'Lay the foundation and structure according to plans.' =>
-                            'Finish foundation work within 6 weeks.',
-                        'Install electrical and plumbing systems.' => 'Complete installations by week 18.',
-                        'Complete exterior and interior finishes.' =>
-                            'Finish all finishes within 8 weeks after installations.',
-                        'Conduct regular safety meetings and ensure compliance with regulations.' =>
-                            'Hold weekly safety meetings with a 100% attendance rate.',
-                    ],
-                    'Inspection' => [
-                        'Perform initial site inspections and assessments.' =>
-                            'Complete initial inspection by the end of week 2.',
-                        'Schedule and conduct periodic inspections during construction.' =>
-                            'Conduct inspections bi-weekly throughout construction.',
-                        'Review contractor compliance with design specifications.' =>
-                            'Review compliance at each major milestone.',
-                        'Address any identified issues or deficiencies.' =>
-                            'Resolve issues within 5 days of identification.',
-                        'Finalize inspection reports and obtain certificates of occupancy.' =>
-                            'Submit final reports within 2 weeks of project completion.',
-                    ],
-                    'Maintenance' => [
-                        'Develop a routine maintenance schedule for the building.' =>
-                            'Create the schedule within 1 month post-construction.',
-                        'Conduct regular inspections of systems (HVAC, plumbing, electrical).' =>
-                            'Perform inspections quarterly.',
-                        'Address repairs and replacements as needed.' =>
-                            'Complete repairs within 2 weeks of identification.',
-                        'Keep detailed records of maintenance activities and costs.' =>
-                            'Update records after each maintenance activity.',
-                        'Evaluate and update maintenance plans based on building performance.' =>
-                            'Review and update plans annually.',
-                    ],
-                ];
             @endphp
 
             <div class="accordion" id="accordionExample">
                 @foreach ($stages as $stage)
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse{{ $loop->index }}" aria-expanded="false"
-                                aria-controls="collapse{{ $loop->index }}">
+                            <button class="accordion-button {{ $loop->index == 0 ? '' : 'collapsed' }}" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index }}"
+                                aria-expanded="false" aria-controls="collapse{{ $loop->index }}">
                                 {{ $stage }}
                             </button>
                         </h2>
-                        <div id="collapse{{ $loop->index }}" class="accordion-collapse collapse"
+                        <div id="collapse{{ $loop->index }}"
+                            class="accordion-collapse collapse {{ $loop->index == 0 ? 'show' : '' }}"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <x-dashboard.table class="tasks-table" tableID="{{ strtolower($stage) }}_tasks">
                                     <x-slot:tableHeaders>
                                         <th>Task Name</th>
+                                        <th class="col-auto"></th>
                                         <th>Target</th>
+                                        <th class="col-auto"></th>
+                                        <th>Task Completed</th>
+                                        <th class="col-auto"></th>
                                         <th>Completion Rate</th>
                                     </x-slot:tableHeaders>
 
-                                    @foreach ($tasks[$stage] as $task => $item)
-                                        <x-dashboard.table-content>
-                                            <td>{{ $task }}</td>
-                                            <td>{{ $item }}</td>
-                                            <td class="d-flex align-items-center gap-2">
-                                                <div class="progress-container">
-                                                    <div class="progress-bar bg-success"
-                                                        style="width: {{ $stage == 'Planning' ? '100%' : '0%' }}">
+                                    @foreach ($building_data['tasks'] as $task)
+                                        @if ($task->task_header == $stage)
+                                            @php
+                                                $task_completion_rate =
+                                                    ($task->percentage_completed / $task->task_percentage) * 100;
+                                            @endphp
+                                            <x-dashboard.table-content>
+                                                <td>{{ $task->task_name }}</td>
+                                                <td class="col-auto"></td>
+                                                <td>{{ $task->task_percentage }}</td>
+                                                <td class="col-auto"></td>
+                                                <td>{{ $task->percentage_completed }}</td>
+                                                <td class="col-auto"></td>
+                                                <td class="d-flex align-items-center gap-2">
+                                                    <div class="progress-container">
+                                                        <div class="progress-bar bg-success"
+                                                            style="width: {{ $task_completion_rate }}%">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <p>{{ $stage == 'Planning' ? '100%' : '0%' }}</p>
-                                            </td>
-                                        </x-dashboard.table-content>
+                                                    <p>{{ round($task_completion_rate, 2) }}</p>
+                                                </td>
+                                            </x-dashboard.table-content>
+                                        @endif
                                     @endforeach
                                 </x-dashboard.table>
                             </div>
